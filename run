@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -eu
+
+if [[ $( adb shell getprop ro.product.device ) != "U3A_10_WIFI" ]]; then
+	>&2 echo "error: U3A_10_WIFI device not found"
+	exit 1
+fi
+
+su_if_required=$( [[ $( adb shell id -u ) == 0 ]] || echo "su -c" )
+
+adb push foreign-twrp/image-new.img /sdcard/recovery.img
+adb shell $su_if_required "dd if=/sdcard/recovery.img of=/dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/recovery"
+adb shell rm /sdcard/recovery.img
+
+adb reboot recovery
+
