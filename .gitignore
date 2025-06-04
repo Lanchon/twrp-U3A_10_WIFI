@@ -1,0 +1,15 @@
+# unpack
+recovery.img
+split_img
+ramdisk
+
+# repack
+ramdisk-new.cpio.gz
+unpadded-new.img
+image-new.img
+
+# AIK
+unpackimg.sh
+repackimg.sh
+cleanup.sh
+
