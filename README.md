@@ -41,6 +41,10 @@ cp -n build.prop build.prop.bak
 sed -i '/^ro\.audio\.ignore_effects\=/d' build.prop
 echo 'ro.audio.ignore_effects=1' >>build.prop
 
+# force on-screen navigation
+sed -i '/^qemu\.hw\.mainkeys\=/d' build.prop
+echo 'qemu.hw.mainkeys=0' >>build.prop
+
 # disable overlays
 mv -n overlay overlay.bak
 
